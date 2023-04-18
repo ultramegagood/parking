@@ -1,5 +1,4 @@
-///роутер чтоб задать маршруты и подмаршруты используется пакет go_router
-import 'package:flutter/material.dart';
+/// маршрутизатор маршруттар мен ішкі маршруттарды орнату үшін go_router пакеті қолданыладыimport 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -54,7 +53,7 @@ GoRouter routes = GoRouter(
 );
 
 ///
-/// Логгер чтобы выводить касивые логи на консоль
+/// Консольге әдемі журналдарды шығару үшін Логгер
 ///
 final logger = Logger(
   printer: PrettyPrinter(

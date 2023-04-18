@@ -1,3 +1,4 @@
+/// Кері есеп таймеріне арналған Виджет
 import 'dart:async';
 import 'package:flutter/material.dart';
 

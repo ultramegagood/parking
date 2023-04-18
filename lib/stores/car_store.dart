@@ -1,3 +1,4 @@
+/// Singleton әдістерімен жұмыс істеуге арналған дерексіз сынып
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';

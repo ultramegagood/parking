@@ -1,3 +1,4 @@
+/// бағдарламаны іске қосу үшін негізгі сынып
 import 'package:flutter/material.dart';
 import 'package:parking/firebase_options.dart';
 import 'package:parking/routes.dart';

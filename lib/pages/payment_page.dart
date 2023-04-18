@@ -1,3 +1,4 @@
+/// Деректерді енгізу және билетті төлеу беті
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:go_router/go_router.dart';

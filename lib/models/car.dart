@@ -1,3 +1,4 @@
+/// Конструктор мен json түрлендірулеріне арналған модель
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'car.g.dart';

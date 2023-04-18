@@ -1,4 +1,6 @@
+/// Singleton авторизациялау әдістерімен жұмыс істеуге арналған дерексіз сынып
 import 'package:mobx/mobx.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 part 'auth_store.g.dart';
