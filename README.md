@@ -1,16 +1,78 @@
+<!-- This file uses generated code. Visit https://pub.dev/packages/readme_helper for usage information. -->
 # parking
+Автотұрақ бағдарламасы тұрақ ақысын оңай және жылдам төлеуге мүмкіндік береді
+авторизациялау және кэште тарихты сақтау әдісі қолданылады
+## Usage
 
-A new Flutter project.
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Firebase желісіне қосылу
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // Синглондық сыныптарды тіркеу
+  await serviceLocatorSetup()
+  // userStore пайдаланушы класының басқару элементтеріне арналған синглон
+  final userStore = serviceLocator<UserStore>();
+  userStore.init();
+  runApp(const MyApp());
+}
+```
 
-## Getting Started
+```dart
+//Консольге әдемі журналдарды шығаруға арналған тіркеуші
+final logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 30,
+    errorMethodCount: 5,
+    colors: true,
+    printEmojis: true,
+    printTime: true,
+  ),
+);
+```
+```dart
+final userStore = serviceLocator<UserStore>();
+//Қолданбаларға арналған жолдарды жасау
+GoRouter routes = GoRouter(
+initialLocation: '/auth',
+debugLogDiagnostics: true,
+routes: [
+GoRoute(
+path: "/auth",
+builder: (context, state) =>  LoginPage(),
+redirect: (context, state){
+  //егер пайдаланушы бар болса, үйге қайта бағыттаңыз
+if(userStore.user != null){
+return "/";
+}
+return null;
+}
+),
 
-This project is a starting point for a Flutter application.
+    GoRoute(
+      path: "/signup",
+      builder: (context, state) => SignUpPage(),
+    ),
+    GoRoute(path: '/',
+      builder: (context, state) => const HomePage(),
+      routes: [
 
-A few resources to get you started if this is your first Flutter project:
+        GoRoute(
+          path: "payment",
+          builder: (context, state) => PaymentPage(),
+        ),
+      ],
+      redirect: (context, state){
+        if(userStore.user == null){
+          return "/auth";
+        }
+        return null;
+      }
+      ,),
+],
+);
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ [auth_store.dart](./lib/stores/auth_store.dart) .

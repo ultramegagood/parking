@@ -28,7 +28,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorSchemeSeed: Colors.green,
-          appBarTheme: const AppBarTheme(centerTitle: true,elevation: 0, ),
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+            elevation: 0,
+          ),
           inputDecorationTheme: const InputDecorationTheme(
             border: OutlineInputBorder(),
           ),

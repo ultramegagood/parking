@@ -53,7 +53,7 @@ abstract class _CarStore with Store {
               hours: e['hours'],
               price: e['price'],
               paymentTime: DateTime.parse(e['paymentTime'])))
-          .toList());
+          .toList().reversed);
     }
   }
 
