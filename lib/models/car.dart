@@ -5,11 +5,14 @@ part 'car.g.dart';
 @JsonSerializable()
 class Car {
   final String grnz;
+  final String id;
   final String hours;
+  final String numberPlace;
   final String price;
-  final DateTime paymentTime;
+  final DateTime purchaseTime;
 
-  Car({required this.grnz,required this.hours,required this.paymentTime, required this.price});
+
+  Car({required this.id,required this.purchaseTime,required this.grnz,required this.hours, required this.numberPlace,required this.price});
 
 
   factory Car.fromJson(Map<String, dynamic> json) =>

@@ -1,10 +1,14 @@
 /// бағдарламаны іске қосу үшін негізгі сынып
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:parking/firebase_options.dart';
 import 'package:parking/routes.dart';
 import 'package:parking/service_locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:parking/stores/auth_store.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

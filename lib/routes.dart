@@ -34,7 +34,7 @@ GoRouter routes = GoRouter(
       builder: (context, state) => SignUpPage(),
     ),
     GoRoute(path: '/',
-      builder: (context, state) => const HomePage(),
+      builder: (context, state) =>  CarListPage(),
       routes: [
 
         GoRoute(
