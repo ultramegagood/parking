@@ -148,6 +148,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
                             if (_formKey.currentState!.validate()) {
                               carStore.addCar(Car(
+                                  finishTime: null,
                                   id: uuid.v4(),
                                   purchaseTime: DateTime.now(),
                                   grnz: grnz,

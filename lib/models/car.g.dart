@@ -7,6 +7,9 @@ part of 'car.dart';
 // **************************************************************************
 
 Car _$CarFromJson(Map<String, dynamic> json) => Car(
+      finishTime: json['finishTime'] == null
+          ? null
+          : DateTime.parse(json['finishTime'] as String),
       id: json['id'] as String,
       purchaseTime: DateTime.parse(json['purchaseTime'] as String),
       grnz: json['grnz'] as String,
@@ -22,4 +25,5 @@ Map<String, dynamic> _$CarToJson(Car instance) => <String, dynamic>{
       'numberPlace': instance.numberPlace,
       'price': instance.price,
       'purchaseTime': instance.purchaseTime.toIso8601String(),
+      'finishTime': instance.finishTime?.toIso8601String(),
     };

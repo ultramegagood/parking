@@ -10,9 +10,10 @@ class Car {
   final String numberPlace;
   final String price;
   final DateTime purchaseTime;
+  DateTime? finishTime;
 
 
-  Car({required this.id,required this.purchaseTime,required this.grnz,required this.hours, required this.numberPlace,required this.price});
+  Car({ this.finishTime,required this.id,required this.purchaseTime,required this.grnz,required this.hours, required this.numberPlace,required this.price});
 
 
   factory Car.fromJson(Map<String, dynamic> json) =>

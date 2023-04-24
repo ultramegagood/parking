@@ -5,8 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:parking/pages/timer_widget.dart';
-import 'package:parking/stores/car_store.dart';
 import 'package:printing/printing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/car.dart';
@@ -14,9 +12,12 @@ import '../service_locator.dart';
 import '../stores/auth_store.dart';
 import 'dart:async';
 import 'package:pdf/pdf.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
+import '../stores/car_store.dart';
 
 class CarListPage extends StatefulWidget {
   @override
@@ -128,7 +129,39 @@ class _CarListPageState extends State<CarListPage> {
 
               return ListTile(
                 onTap: ()async{
-                  final receiptPdf = await generateReceiptPdf(car);
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Хотите оплатить?"),
+                        actions: [
+                          ElevatedButton(
+                            child: Text("Да"),
+                            onPressed: () async{
+                              if(car.finishTime == null){
+                                car.finishTime = DateTime.now();
+                                _carStore.updateCar(car);
+                              }
+                              final receiptPdf = await generateReceiptPdf(car);
+
+                              // Действия, которые нужно выполнить при нажатии на "Да"
+                              Navigator.of(context).pop();
+
+                            },
+                          ),
+                          ElevatedButton(
+                            child: Text("Нет"),
+                            onPressed: () {
+                              // Действия, которые нужно выполнить при нажатии на "Нет"
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+
+
 
                 },
                 leading: SvgPicture.asset(
@@ -138,7 +171,7 @@ class _CarListPageState extends State<CarListPage> {
                   color: Colors.teal[100 * (index % 9)],
                 ),
                 title: Text('${car.grnz}'),
-                subtitle: Text(
+                subtitle:car.finishTime!=null?Text("Дата оплаты: ${DateFormat('dd-MM-yyyy HH:mm').format(car.finishTime!)}"): Text(
                     'бағасы: $priceтг.   Орын:${car.numberPlace}\nУақыт өтті: $hoursPassed:$minutesPassed:$secondsPassed'),
                 trailing: IconButton(
                   icon: Icon(Icons.delete),
